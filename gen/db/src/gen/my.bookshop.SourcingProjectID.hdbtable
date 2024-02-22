@@ -1,0 +1,4 @@
+COLUMN TABLE my_bookshop_SourcingProjectID (
+  ID NVARCHAR(5000) NOT NULL,
+  PRIMARY KEY(ID)
+)

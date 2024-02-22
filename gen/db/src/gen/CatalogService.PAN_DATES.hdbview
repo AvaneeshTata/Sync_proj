@@ -1,0 +1,6 @@
+VIEW CatalogService_PAN_DATES AS SELECT
+  PAN_DATES_0.PAN_Number,
+  PAN_DATES_0.userName,
+  PAN_DATES_0.fromDate,
+  PAN_DATES_0.toDate
+FROM my_bookshop_PAN_DATES AS PAN_DATES_0

@@ -1,0 +1,7 @@
+COLUMN TABLE my_bookshop_PAN_DATES (
+  PAN_Number NVARCHAR(5000) NOT NULL,
+  userName NVARCHAR(5000),
+  fromDate NVARCHAR(5000),
+  toDate NVARCHAR(5000),
+  PRIMARY KEY(PAN_Number)
+)

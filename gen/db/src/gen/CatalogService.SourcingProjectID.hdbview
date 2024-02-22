@@ -1,0 +1,3 @@
+VIEW CatalogService_SourcingProjectID AS SELECT
+  SourcingProjectID_0.ID
+FROM my_bookshop_SourcingProjectID AS SourcingProjectID_0

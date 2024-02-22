@@ -1,0 +1,13 @@
+COLUMN TABLE CatalogService_PAN_DATES_drafts (
+  PAN_Number NVARCHAR(5000) NOT NULL,
+  userName NVARCHAR(5000) NULL,
+  fromDate NVARCHAR(5000) NULL,
+  toDate NVARCHAR(5000) NULL,
+  IsActiveEntity BOOLEAN,
+  HasActiveEntity BOOLEAN,
+  HasDraftEntity BOOLEAN,
+  DraftAdministrativeData_DraftUUID NVARCHAR(36) NOT NULL,
+  PRIMARY KEY(PAN_Number)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN CatalogService_DraftAdministrativeData AS DraftAdministrativeData ON (DraftAdministrativeData.DraftUUID = DraftAdministrativeData_DraftUUID)
+)

@@ -1,0 +1,148 @@
+{
+  "namespace": "my.bookshop",
+  "definitions": {
+    "my.bookshop.SourcingProjectID": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.String"
+        }
+      }
+    },
+    "my.bookshop.PAN_DATES": {
+      "kind": "entity",
+      "elements": {
+        "PAN_Number": {
+          "key": true,
+          "type": "cds.String"
+        },
+        "userName": {
+          "type": "cds.String"
+        },
+        "fromDate": {
+          "type": "cds.String"
+        },
+        "toDate": {
+          "type": "cds.String"
+        }
+      }
+    },
+    "CatalogService": {
+      "@source": "srv/cat-service.cds",
+      "kind": "service"
+    },
+    "CatalogService.SourcingProjectID": {
+      "kind": "entity",
+      "@UI.LineItem": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "ID"
+          },
+          "Label": "ID"
+        }
+      ],
+      "@UI.FieldGroup#GeneratedGroup1.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#GeneratedGroup1.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Label": "ID",
+          "Value": {
+            "=": "ID"
+          }
+        }
+      ],
+      "@UI.Facets": [
+        {
+          "$Type": "UI.ReferenceFacet",
+          "Label": "Project ID",
+          "ID": "ProjectID",
+          "Target": "@UI.FieldGroup#ProjectID"
+        }
+      ],
+      "@UI.FieldGroup#ProjectID.$Type": "UI.FieldGroupType",
+      "@UI.FieldGroup#ProjectID.Data": [
+        {
+          "$Type": "UI.DataField",
+          "Value": {
+            "=": "ID"
+          },
+          "Label": "ID"
+        }
+      ],
+      "projection": {
+        "from": {
+          "ref": [
+            "my.bookshop.SourcingProjectID"
+          ]
+        }
+      },
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.String"
+        }
+      }
+    },
+    "CatalogService.PAN_DATES": {
+      "kind": "entity",
+      "@odata.draft.enabled": true,
+      "projection": {
+        "from": {
+          "ref": [
+            "my.bookshop.PAN_DATES"
+          ]
+        }
+      },
+      "elements": {
+        "PAN_Number": {
+          "key": true,
+          "type": "cds.String"
+        },
+        "userName": {
+          "type": "cds.String"
+        },
+        "fromDate": {
+          "type": "cds.String"
+        },
+        "toDate": {
+          "type": "cds.String"
+        }
+      }
+    },
+    "CatalogService.postUserDataDate": {
+      "kind": "function",
+      "params": {
+        "userName": {
+          "type": "cds.String"
+        },
+        "fromDate": {
+          "type": "cds.String"
+        },
+        "toDate": {
+          "type": "cds.String"
+        }
+      },
+      "returns": {
+        "type": "cds.String"
+      }
+    },
+    "CatalogService.postProjectID": {
+      "kind": "function",
+      "params": {
+        "ID": {
+          "type": "cds.String"
+        }
+      },
+      "returns": {
+        "type": "cds.String"
+      }
+    }
+  },
+  "meta": {
+    "creator": "CDS Compiler v4.5.0",
+    "flavor": "inferred"
+  },
+  "$version": "2.0"
+}

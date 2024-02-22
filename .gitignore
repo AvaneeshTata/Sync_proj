@@ -1,7 +1,11 @@
 # CAP Sync_Project
+# _out
+# *.db
+# *.sqlite
+# connection.properties
+# default-*.json
 .cdsrc-private.json
-gen/
-target/
+# node_modules/
 
 # Web IDE, App Studio
 .che/
