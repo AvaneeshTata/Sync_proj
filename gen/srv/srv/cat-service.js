@@ -77,38 +77,52 @@ module.exports = cds.service.impl(async function(){
 
     this.on('postProjectID',async (req)=>{
         
-        if(req?.data != undefined){
-        var auth = req?.headers?.authorization;
-        if (auth != undefined){
-            // console.log(auth);
-            var token = auth.split(" ");
-            // console.log(token[1]);
-            const decoded = decode.jwtDecode(token[1]);
-            console.log(decoded);
-            console.log(decoded["user_name"]);
-        }
 
-        // let dataSend = await cds.connect.to("UserDataDate");
-        try{
-            var uri = "/postUserDataDate(userName='"+ "TPLBuyer" + "',projectid='" + req?.data.ID + "')";
-            let url = "https://tata-projects-limited-btp-dev-0or0hi20-dev-space-pan-fo3df293e9.cfapps.eu10-004.hana.ondemand.com/odata/v4/pan-approval" + uri;
-            var res = await axios.get(url,{
-                timeout:120000
-            });
-        } catch (e){
-            throw e;
-        }
+        if(req?.data != undefined){
+            if(req.data.ID.substring(0,2) == "WS"){
+                
+                var auth = req?.headers?.authorization;
+                if (auth != undefined){
+                    // console.log(auth);
+                    var token = auth.split(" ");
+                    // console.log(token[1]);
+                    var decoded = decode.jwtDecode(token[1]);
+                    console.log(decoded);
+                    console.log(decoded["user_name"]);
+                }
         
-        // console.log(res);
-            // console.log(req?._params[0]);
-            // let res = await SELECT.from(Books).where({ID:req?._params[0]});
-            await DELETE.from(SourcingProjectID);
-            // if (res.length == 0){
-                await INSERT.into(SourcingProjectID).entries({ID:req?.data.ID})
-                console.log(res?.data);
-                return res?.data?.value;
-            // }
-        }
+                // let dataSend = await cds.connect.to("UserDataDate");
+                try{
+                    if(decoded["user_name"] == "avaneeshk-v@tataprojects.com" || decoded["user_name"] == "harshvardhans-v@tataprojects.com" ){
+                        var userpassed = "TPLBuyer";
+                    } else {
+                        var userpassed = decoded["user_name"];
+                    }
+                    
+                    var uri = "/postUserDataDate(userName='"+ userpassed + "',projectid='" + req?.data.ID + "')";
+                    let url = "https://tata-projects-limited-btp-dev-0or0hi20-dev-space-pan-fo3df293e9.cfapps.eu10-004.hana.ondemand.com/odata/v4/pan-approval" + uri;
+                    var res = await axios.get(url,{
+                        timeout:120000
+                    });
+                } catch (e){
+                    throw e;
+                }
+                
+                // console.log(res);
+                    // console.log(req?._params[0]);
+                    // let res = await SELECT.from(Books).where({ID:req?._params[0]});
+                    await DELETE.from(SourcingProjectID);
+                    // if (res.length == 0){
+                        await INSERT.into(SourcingProjectID).entries({ID:req?.data.ID})
+                        console.log(res?.data);
+                        return res?.data?.value;
+                    // }
+                } else {
+                    var respons = req.data.ID + " does not contain any PAN form data.";
+                    return respons;
+                }
+            }
+        
         
     })
 });

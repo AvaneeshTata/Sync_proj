@@ -93,7 +93,13 @@ module.exports = cds.service.impl(async function(){
         
                 // let dataSend = await cds.connect.to("UserDataDate");
                 try{
-                    var uri = "/postUserDataDate(userName='"+ decoded["user_name"] + "',projectid='" + req?.data.ID + "')";
+                    if(decoded["user_name"] == "avaneeshk-v@tataprojects.com" || decoded["user_name"] == "harshvardhans-v@tataprojects.com" ){
+                        var userpassed = "TPLBuyer";
+                    } else {
+                        var userpassed = decoded["user_name"];
+                    }
+                    
+                    var uri = "/postUserDataDate(userName='"+ userpassed + "',projectid='" + req?.data.ID + "')";
                     let url = "https://tata-projects-limited-btp-dev-0or0hi20-dev-space-pan-fo3df293e9.cfapps.eu10-004.hana.ondemand.com/odata/v4/pan-approval" + uri;
                     var res = await axios.get(url,{
                         timeout:120000

@@ -58,38 +58,29 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					// })
 					try{
 						await oFunction.execute();
-						const oContext = oFunction.getBoundContext().getValue();
+						var oContext = oFunction.getBoundContext().getValue();
+						if(oContext.value.substring(0,3) == "Doc"){
+							busyind.close();
+							var href_For_Product_display = ( sap.ushell && sap.ushell.Container && await sap.ushell.Container.getServiceAsync("Navigation")) || "";
+							if(href_For_Product_display != ""){
+								await href_For_Product_display.navigate({
+									target : { semanticObject : "obj1", action : "display" },
+									params : { "PAN_Number" : oContext.value }
+								})
+							}
+
+						} else {
+							busyind.close();
+							this.base.getView().getContent()[0].getSections()[1].getSubSections()[0].getBlocks()[0].setType('Error');
+							this.base.getView().getContent()[0].getSections()[1].getSubSections()[0].getBlocks()[0].setText(oContext.value);
+						}
 	
-						busyind.close();
-								var href_For_Product_display = ( sap.ushell && sap.ushell.Container && await sap.ushell.Container.getServiceAsync("Navigation")) || "";
-								if(href_For_Product_display != ""){
-									await href_For_Product_display.navigate({
-										target : { semanticObject : "obj1", action : "display" },
-										params : { "PAN_Number" : oContext.value }
-									})
-								}
+						
 					} catch (e) {
 						this.base.getView().getContent()[0].getSections()[1].getSubSections()[0].getBlocks()[0].setType('Error');
 						this.base.getView().getContent()[0].getSections()[1].getSubSections()[0].getBlocks()[0].setText(`${e?.error?.code} - ${e?.error?.message}`);
 						busyind.close();
-					}
-					// await oFunction.execute();
-					// const oContext = oFunction.getBoundContext().getValue();
-
-					// busyind.close();
-					// 		var href_For_Product_display = ( sap.ushell && sap.ushell.Container && await sap.ushell.Container.getServiceAsync("Navigation")) || "";
-					// 		if(href_For_Product_display != ""){
-					// 			await href_For_Product_display.navigate({
-					// 				target : { semanticObject : "obj1", action : "display" },
-					// 				params : { "PAN_Number" : oContext.value }
-					// 			})
-					// 		}
-					
-					
-
-					
-
-							
+					}		
 				}
 			}
 		}

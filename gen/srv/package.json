@@ -35,6 +35,7 @@
     },
     "requires": {
       "auth": "dummy",
+      "db":"hana",
       "UserDataDate": {
         "kind": "rest",
         "credentials": {
