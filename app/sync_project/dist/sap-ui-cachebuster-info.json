@@ -1,0 +1,12 @@
+{
+  "manifest.json": 1708487377723,
+  "Component.js": 1706508991339,
+  "ext/controller/SyncObjController.controller.js": 1708410707765,
+  "ext/controller/Sync.controller.js": 1707902357199,
+  "i18n/i18n.properties": 1706509032466,
+  "Component-preload.js": 1708487378069,
+  "ext/controller/SyncObjController-dbg.controller.js": 1708410707765,
+  "ext/controller/Sync-dbg.controller.js": 1707902357199,
+  "Component-dbg.js": 1706508991339,
+  "index.html": 1706508991339
+}

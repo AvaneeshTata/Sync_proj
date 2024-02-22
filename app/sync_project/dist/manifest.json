@@ -1,0 +1,174 @@
+{
+    "_version": "1.59.0",
+    "sap.app": {
+        "id": "syncproject",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.12.2",
+            "toolsId": "e9300457-19fa-46db-b3e7-595a29cd07e3"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "odata/v4/catalog/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "Sync_Project_1-display": {
+                    "semanticObject": "Sync_Project_1",
+                    "action": "display",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    }
+                }
+            },
+            "outbounds": {
+                "obj1-display": {
+                    "semanticObject": "obj1",
+                    "action": "display",
+                    "parameters": {}
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.120.4",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {},
+                "sap.suite.ui.commons": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "syncproject.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "BooksList",
+                    "target": "BooksList"
+                },
+                {
+                    "pattern": "SourcingProjectID({key}):?query:",
+                    "name": "SourcingProjectIDObjectPage",
+                    "target": "SourcingProjectIDObjectPage"
+                }
+            ],
+            "targets": {
+                "BooksList": {
+                    "type": "Component",
+                    "id": "BooksList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/SourcingProjectID",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "SourcingProjectID": {
+                                    "detail": {
+                                        "route": "SourcingProjectIDObjectPage"
+                                    }
+                                }
+                            },
+                            "initialLoad": "Enabled"
+                        }
+                    }
+                },
+                "SourcingProjectIDObjectPage": {
+                    "type": "Component",
+                    "id": "SourcingProjectIDObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/SourcingProjectID",
+                            "navigation": {}
+                        }
+                    }
+                }
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ListReport.ListReportController#syncproject::BooksList": {
+                        "controllerName": "syncproject.ext.controller.Sync"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#syncproject::SourcingProjectIDObjectPage": {
+                        "controllerName": "syncproject.ext.controller.SyncObjController"
+                    }
+                }
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "sync_project_1"
+    }
+}

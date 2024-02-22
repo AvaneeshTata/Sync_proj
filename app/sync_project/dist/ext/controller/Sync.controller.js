@@ -1,0 +1,1 @@
+sap.ui.define(["sap/ui/core/mvc/ControllerExtension"],function(n){"use strict";return n.extend("syncproject.ext.controller.Sync",{override:{onInit:function(){var n=this.base.getExtensionAPI().getModel()},routing:{onBeforeBinding:async function(n){}}}})});
