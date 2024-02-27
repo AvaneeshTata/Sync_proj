@@ -102,7 +102,7 @@ module.exports = cds.service.impl(async function(){
                     var uri = "/postUserDataDate(userName='"+ userpassed + "',projectid='" + req?.data.ID + "')";
                     let url = "https://tata-projects-limited-tpl-ariba-uat-dzu885iy-tpl-aruat-3e0f9ade.cfapps.eu10-004.hana.ondemand.com/odata/v4/pan-approval" + uri;
                     var res = await axios.get(url,{
-                        timeout:120000
+                        timeout:180000
                     });
                 } catch (e){
                     throw e;

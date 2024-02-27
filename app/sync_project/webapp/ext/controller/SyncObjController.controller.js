@@ -15,7 +15,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 			},
 			routing:{
 				onAfterBinding: async function(oBindingContext){
-					debugger;
+					
 					this.base.getView().getContent()[0].getHeaderTitle().setVisible(false);
 					this.base.getView().getContent()[0].getSections()[0].setVisible(false);
 					this.base.getView().getContent()[0].addSection(new sap.uxap.ObjectPageSection());
@@ -41,7 +41,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 					// 	url: url,
 					// 	type: "GET",
 					// 	success: async function(data){
-							// debugger
+							// 
 							// busyind.close();
 							// var href_For_Product_display = ( sap.ushell && sap.ushell.Container && await sap.ushell.Container.getServiceAsync("Navigation")) || "";
 							// if(href_For_Product_display != ""){
@@ -52,7 +52,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 							// }
 					// 	},
 					// 	error: function(jqXHR, textStatus, errorThrown){
-					// 		debugger
+					// 		
 					// 	},
 					// 	timeout:100000
 					// })
