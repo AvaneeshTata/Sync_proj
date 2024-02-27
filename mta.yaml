@@ -9,6 +9,7 @@ modules:
     requires:
       - name: uaa_Sync_Project
       - name: Sync_Project-db
+      - name: PAN_Form_Data-destination-service
     provides:
       - name: srv-api
         properties:
@@ -90,6 +91,12 @@ modules:
     requires:
       - name: Sync_Project-db
 resources:
+  - name: PAN_Form_Data-destination-service 
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service: destination
+      service-name: PAN_Form_Data-destination-service
+      service-plan: lite
   - name: Sync_Project-destination-service
     type: org.cloudfoundry.managed-service
     parameters:

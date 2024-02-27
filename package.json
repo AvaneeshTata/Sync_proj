@@ -34,8 +34,9 @@
       "bypass_draft": true
     },
     "requires": {
-      "auth": "dummy",
+      "auth": "xsuaa",
       "db": "hana",
+      "destinations": true,
       "UserDataDate": {
         "kind": "rest",
         "credentials": {
